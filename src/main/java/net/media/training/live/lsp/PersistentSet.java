@@ -8,16 +8,13 @@ package net.media.training.live.lsp;
  * To change this template use File | Settings | File Templates.
  */
 public class PersistentSet<T> extends Set<T> {
-
-    Set<PersistentObject<T>> persistentObjectSet = new Set<PersistentObject<T>>();
-
     public void add(T element) {
-        PersistentObject<T> persistentObject = new PersistentObject<T>(element);
-        persistentObjectSet.add(persistentObject);
+        PersistentObject persistentObject = new PersistentObject(element);
+        super.add((T) persistentObject);
     }
 
     public boolean isMember(T element) {
-        for (Object o : persistentObjectSet.innerSet) {
+        for (Object o : innerSet) {
             if (o.equals(element))
                 return true;
         }
